@@ -62,6 +62,7 @@ const CONFIG = {
     { text: "OpenAI", link: "https://openai.com" },
     { text: "Tesla", link: "https://tesla.com" },
     { text: "Nvidia", link: "https://nvidia.com" },
-    { text: "Biogen", link: "https://biogen.com" }
+    { text: "Biogen", link: "https://biogen.com" },
+     { text: "Tamannah Jewellery", link: "https://Tamannah.com" }
   ]
 };
