@@ -1,36 +1,95 @@
-body{
-  background:black;
-  color:white;
-  font-family:Arial, Helvetica, sans-serif;
-  text-align:center;
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
+body {
+  background: black;
+  color: white;
+  font-family: Montserrat, Helvetica, sans-serif;
+  text-align: center;
+  margin: 0;
 }
 
-h1{
-  margin-top:30px;
+h1 {
+  margin-top: 30px;
 }
 
-.tiles{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-  padding:40px;
+/* LAYOUT */
+.main-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px 40px;
+  box-sizing: border-box;
 }
 
-.tile{
-  padding:40px;
-  background:#111;
-  border-radius:14px;
-  border:2px solid #333;
-  font-size:22px;
-  transition:all 0.3s ease;
+/* NEWS GRID */
+.tiles {
+  flex: 8;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.tile:hover{
-  transform:scale(1.05);
+/* NEWS TILE */
+.tile {
+  padding: 20px;
+  background: black;
+  border-radius: 12px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
 }
 
-.category{
-  font-size:12px;
-  margin-bottom:10px;
-  font-weight:bold;
+.category {
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.headline {
+  font-family: 'Courier Prime', monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  height: 320px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* SPONSOR SECTION */
+.sponsor-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  border-left: 0.5px solid white;
+  padding-left: 15px;
+}
+
+.sponsor-title {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.sponsor-column {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sponsor-tile {
+  width: 90px;
+  height: 55px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsor-tile:hover {
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+.spotlight {
+  box-shadow: 0 0 20px cyan;
 }
