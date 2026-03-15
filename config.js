@@ -63,6 +63,6 @@ const CONFIG = {
     { text: "Tesla", link: "https://tesla.com" },
     { text: "Nvidia", link: "https://nvidia.com" },
     { text: "Biogen", link: "https://biogen.com" },
-     { text: "Tamannah Jewellery", link: "https://Tamannah.com" }
+     { text: "Tamannah Jewellery", link: "https://www.tamannaah.com/" }
   ]
 };
