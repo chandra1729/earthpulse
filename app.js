@@ -109,7 +109,7 @@ function startSponsorPulse() {
     tiles.forEach(t => t.classList.remove("pulse"));
     tiles[currentIndex].classList.add("pulse");
     currentIndex = (currentIndex + 1) % tiles.length;
-  }, 6000); // each tile glows for 6s
+  }, 10000); // each tile glows for 6s
 }
 
 // -----------------------------
