@@ -1,17 +1,15 @@
 const CONFIG = {
-  tileCount: 3,  // number of news tiles
-  scrollTime: 2000,
+  tileCount: 3,
+  newsItemCount: 10,
   pauseTime: 3000,
-
   apiKeys: {
-    gnews: "3c9a21f9c87084fe483e8d988b106b4a" // put your GNews API key here
+    gnews: "3c9a21f9c87084fe483e8d988b106b4a"  // replace with your GNews key
   },
 
-  // Topics with fallback news
   topics: [
     {
       name: "Space",
-      query: "spacex OR nasa",
+      query: "spacex OR nasa OR planets OR space exploration",
       fallback: [
         "Mars rover discovers new rock formation",
         "SpaceX launches Starship test flight",
@@ -60,10 +58,10 @@ const CONFIG = {
   ],
 
   sponsors: [
-    { text: "SpaceX", link: "https://spacex.com", logo: "logos/spacex.png" },
-    { text: "OpenAI", link: "https://openai.com", logo: "logos/openai.png" },
-    { text: "Tesla", link: "https://tesla.com", logo: "logos/tesla.png" },
-    { text: "Nvidia", link: "https://nvidia.com", logo: "logos/nvidia.png" },
-    { text: "Biogen", link: "https://biogen.com", logo: "" }
+    { text: "SpaceX", link: "https://spacex.com" },
+    { text: "OpenAI", link: "https://openai.com" },
+    { text: "Tesla", link: "https://tesla.com" },
+    { text: "Nvidia", link: "https://nvidia.com" },
+    { text: "Biogen", link: "https://biogen.com" }
   ]
 };
