@@ -1,35 +1,69 @@
 const CONFIG = {
+  tileCount: 3,  // number of news tiles
+  scrollTime: 2000,
+  pauseTime: 3000,
 
-  tileCount: 3,
-
-  rotationSeconds: 5,
-
-  categories: {
-
-    EV: "#00ff88",
-    AI: "#ffcc00",
-    Space: "#66ccff",
-    Crypto: "#ff9900",
-    India: "#ff4444"
-
+  apiKeys: {
+    gnews: "3c9a21f9c87084fe483e8d988b106b4a" // put your GNews API key here
   },
 
-  news: [
+  // Topics with fallback news
+  topics: [
+    {
+      name: "Space",
+      query: "spacex OR nasa",
+      fallback: [
+        "Mars rover discovers new rock formation",
+        "SpaceX launches Starship test flight",
+        "NASA announces James Webb results",
+        "New exoplanets discovered in Milky Way",
+        "Astronauts return from ISS mission",
+        "Moon base plans revealed",
+        "Deep space telescope images released",
+        "Asteroid mission successfully completes",
+        "Satellite captures black hole image",
+        "Commercial space tourism expands"
+      ]
+    },
+    {
+      name: "Artificial Intelligence",
+      query: "ai OR artificial intelligence OR machine learning",
+      fallback: [
+        "AI beats humans in coding challenge",
+        "New language model released for developers",
+        "Robotics company unveils AI-powered robot",
+        "AI predicts climate change patterns",
+        "Self-driving cars advance safety features",
+        "AI generates realistic video content",
+        "Machine learning improves drug discovery",
+        "Chatbots transform customer support",
+        "AI ethics framework proposed",
+        "AI-powered music composition software launched"
+      ]
+    },
+    {
+      name: "Biotech",
+      query: "biotech OR gene editing OR medical",
+      fallback: [
+        "Gene therapy trial shows promising results",
+        "CRISPR technique advances disease treatment",
+        "New biotech startup raises $50M",
+        "AI helps discover new vaccines",
+        "Medical imaging improved by AI tools",
+        "Cancer research breakthrough announced",
+        "Biotech lab develops synthetic organ",
+        "Stem cell therapy trial progresses",
+        "Wearable health tech gains traction",
+        "Biotech innovation awards announced"
+      ]
+    }
+  ],
 
-    { text:"Tesla robotaxi fleet launches", category:"EV" },
-
-    { text:"AI writes Hollywood script", category:"AI" },
-
-    { text:"NASA detects distant planet", category:"Space" },
-
-    { text:"Bitcoin crosses new high", category:"Crypto" },
-
-    { text:"India launches weather satellite", category:"India" },
-
-    { text:"EV battery costs falling", category:"EV" },
-
-    { text:"AI beats doctors diagnosis", category:"AI" }
-
+  sponsors: [
+    { text: "SpaceX", link: "https://spacex.com", logo: "logos/spacex.png" },
+    { text: "OpenAI", link: "https://openai.com", logo: "logos/openai.png" },
+    { text: "Tesla", link: "https://tesla.com", logo: "logos/tesla.png" },
+    { text: "Nvidia", link: "https://nvidia.com", logo: "logos/nvidia.png" },
+    { text: "Biogen", link: "https://biogen.com", logo: "" }
   ]
-
 };
