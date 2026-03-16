@@ -1,112 +1,117 @@
+
 const CONFIG = {
 
-  tileCount: 3,
-  newsItemCount: 10,
-  pauseTime: 3000,
-  newsShiftInterval: 5000,
+maxVisibleSignals:10,
+newsShiftInterval:5000,
 
-  apiKeys: {
-    gnews: "3c9a21f9c87084fexxxe8d988b106b4a"
-  },
+/* GNEWS API */
 
-  topics: [
-    {
-      name: "Space",
-      query: "ISRO OR spacex OR nasa OR planets OR space exploration",
-      fallback: [
-        "Mars rover discovers new rock formation",
-        "SpaceX launches Starship test flight",
-        "NASA announces James Webb results",
-        "New exoplanets discovered in Milky Way",
-        "Astronauts return from ISS mission",
-        "Moon base plans revealed",
-        "Deep space telescope images released",
-        "Asteroid mission successfully completes",
-        "Satellite captures black hole image",
-        "Commercial space tourism expands"
-      ]
-    },
-    {
-      name: "Artificial Intelligence",
-      query: "artificial intelligence OR machine learning",
-      fallback: [
-        "AI beats humans in coding challenge",
-        "New language model released for developers",
-        "Robotics company unveils AI-powered robot",
-        "AI predicts climate change patterns",
-        "Self-driving cars advance safety features",
-        "AI generates realistic video content",
-        "Machine learning improves drug discovery",
-        "Chatbots transform customer support",
-        "AI ethics framework proposed",
-        "AI-powered music composition software launched"
-      ]
-    },
-    {
-      name: "Biotech",
-      query: "biotech OR gene editing OR medical",
-      fallback: [
-        "Gene therapy trial shows promising results",
-        "CRISPR technique advances disease treatment",
-        "New biotech startup raises $50M",
-        "AI helps discover new vaccines",
-        "Medical imaging improved by AI tools",
-        "Cancer research breakthrough announced",
-        "Biotech lab develops synthetic organ",
-        "Stem cell therapy trial progresses",
-        "Wearable health tech gains traction",
-        "Biotech innovation awards announced"
-      ]
-    }
-  ],
+apiKeys:{
+gnews:"3c9a21f9c87084fe483e8d988b106b4a"
+},
 
-  sponsors: [
-    {
-      text: "Tesla",
-      link: "https://tesla.com",
-      signalLines: [
-        "Autonomous driving evolving",
-        "Cybertruck production scaling",
-        "Energy storage expansion"
-      ]
-    },
-    {
-      text: "Nvidia",
-      link: "https://nvidia.com",
-      signalLines: [
-        "AI chips powering next-gen models",
-        "Blackwell GPU demand surging",
-        "Data centers scaling globally"
-      ]
-    },
-    {
-      text: "OpenAI",
-      link: "https://openai.com",
-      signalLines: [
-        "Agents ecosystem expanding",
-        "Multimodal models evolving",
-        "Reasoning models improving"
-      ]
-    },
-    {
-      text: "SpaceX",
-      link: "https://spacex.com",
-      signalLines: [
-        "Starship orbital launch planned",
-        "Global satellite coverage expanding",
-        "Mars mission roadmap evolving"
-      ]
-    },
-    {
-      text: "Biogen",
-      link: "https://biogen.com"
-    }
-  ],
+/* TOPICS */
 
-  fallbackSignals: [
-    "Autonomous systems evolving",
-    "Global AI infrastructure scaling",
-    "Next generation robotics emerging"
-  ]
+topics:[
+
+{
+name:"Space",
+color:"#4fc3f7",
+
+query:"ISRO OR spacex OR nasa OR planets OR space exploration",
+
+fallback:[
+"Starship orbital launch preparation",
+"NASA telescope captures deep space images",
+"Private space station projects expanding",
+"Mars rover geological discovery",
+"ISRO lunar mission update"
+]
+},
+
+{
+name:"Artificial Intelligence",
+color:"#ffff00ff",
+
+query:"artificial intelligence OR machine learning OR AI models OR generative AI",
+
+fallback:[
+"OpenAI expands autonomous agents",
+"Nvidia launches next AI GPU",
+"AI copilots transforming coding",
+"Multimodal AI models evolving",
+"AI robotics entering factories"
+]
+},
+
+{
+name:"Biotech",
+color:"#ba68c8",
+
+query:"biotech OR gene editing OR medical research OR CRISPR",
+
+fallback:[
+"CRISPR therapy trial success",
+"Synthetic organ development progresses",
+"AI driven drug discovery",
+"Cancer immunotherapy breakthrough",
+"Gene therapy trials expand"
+]
+}
+
+],
+
+/* TRENDING SIGNALS */
+
+trendingSignals:[
+
+"NVIDIA AI Surge",
+"OpenAI Agents Ecosystem",
+"China AI Regulation",
+"SpaceX Starship Test",
+"Apple AI Chips"
+
+],
+
+/* SPONSORS */
+
+sponsors:[
+
+{
+text:"Tesla",
+signalLines:[
+"Autonomous driving expanding",
+"Cybertruck production scaling",
+"Energy storage growth"
+]
+},
+
+{
+text:"Nvidia",
+signalLines:[
+"AI chip demand surging",
+"Blackwell GPU adoption",
+"Data center expansion"
+]
+},
+
+{
+text:"OpenAI",
+signalLines:[
+"Agents ecosystem growing",
+"Reasoning models improving",
+"Multimodal systems evolving"
+]
+}
+
+],
+
+/* FALLBACK GLOBAL SIGNALS */
+
+fallbackSignals:[
+"Autonomous systems evolving",
+"Global AI infrastructure scaling",
+"Next generation robotics emerging"
+]
 
 };
