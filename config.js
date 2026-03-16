@@ -7,7 +7,7 @@ newsShiftInterval:5000,
 /* GNEWS API */
 
 apiKeys:{
-gnews:"3c9a21f9c87084fe483e8d988b106b4a"
+gnews:"3c9a21f9c870xxx8b106b4a"
 },
 
 /* TOPICS */
