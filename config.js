@@ -3,14 +3,13 @@ const CONFIG = {
   tileCount: 3,
   newsItemCount: 10,
   pauseTime: 3000,
-  newsShiftInterval: 5000, // shift news tiles every 5s
+  newsShiftInterval: 5000,
 
   apiKeys: {
-    gnews: "3c9a21f9c87xxxadasdasdasd88b106b4a"
+    gnews: "3c9a21f9c87084fexxxe8d988b106b4a"
   },
 
   topics: [
-
     {
       name: "Space",
       query: "ISRO OR spacex OR nasa OR planets OR space exploration",
@@ -27,7 +26,6 @@ const CONFIG = {
         "Commercial space tourism expands"
       ]
     },
-
     {
       name: "Artificial Intelligence",
       query: "artificial intelligence OR machine learning",
@@ -44,7 +42,6 @@ const CONFIG = {
         "AI-powered music composition software launched"
       ]
     },
-
     {
       name: "Biotech",
       query: "biotech OR gene editing OR medical",
@@ -61,11 +58,9 @@ const CONFIG = {
         "Biotech innovation awards announced"
       ]
     }
-
   ],
 
   sponsors: [
-
     {
       text: "Tesla",
       link: "https://tesla.com",
@@ -75,7 +70,6 @@ const CONFIG = {
         "Energy storage expansion"
       ]
     },
-
     {
       text: "Nvidia",
       link: "https://nvidia.com",
@@ -85,7 +79,6 @@ const CONFIG = {
         "Data centers scaling globally"
       ]
     },
-
     {
       text: "OpenAI",
       link: "https://openai.com",
@@ -95,7 +88,6 @@ const CONFIG = {
         "Reasoning models improving"
       ]
     },
-
     {
       text: "SpaceX",
       link: "https://spacex.com",
@@ -105,12 +97,10 @@ const CONFIG = {
         "Mars mission roadmap evolving"
       ]
     },
-
     {
       text: "Biogen",
       link: "https://biogen.com"
     }
-
   ],
 
   fallbackSignals: [
