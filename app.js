@@ -25,6 +25,14 @@ async function createTiles() {
       topic.fallback
     );
 
+    // Add timestamps for fallback news
+    const now = new Date();
+    newsArray.forEach((item, idx) => {
+      if (!item.time) {
+        item.time = `${(idx + 1) * 2}m`; // fake timestamp, 2m, 4m, etc.
+      }
+    });
+
     startTypingLoop(headline, newsArray);
   }
 
@@ -37,17 +45,28 @@ async function fetchNews(query, count, fallback) {
     const res = await fetch(url);
     const data = await res.json();
     if (data.articles && data.articles.length > 0) {
-      return data.articles.map(a => ({ text: a.title }));
+      return data.articles.map(a => ({
+        text: a.title,
+        time: a.publishedAt ? formatTime(a.publishedAt) : null
+      }));
     }
   } catch (e) {
     console.error("GNews error:", e);
   }
-  return fallback.map(t => ({ text: t }));
+  // fallback news with default timestamps
+  return fallback.map((t, idx) => ({ text: t, time: `${(idx + 1) * 2}m` }));
 }
 
+// Helper to format ISO date to "Xm"
+function formatTime(iso) {
+  const diff = Math.floor((Date.now() - new Date(iso)) / 60000);
+  return diff <= 0 ? "1m" : `${diff}m`;
+}
+
+// TYPING LOOP
 function startTypingLoop(container, newsArray) {
   async function render() {
-    container.innerHTML = "";
+    container.innerHTML = ""; // clear previous headlines
     let lastCursor = null;
 
     for (let i = 0; i < newsArray.length; i++) {
@@ -56,8 +75,14 @@ function startTypingLoop(container, newsArray) {
       const cursor = document.createElement("span");
       cursor.className = "cursor";
 
+      // timestamp span
+      const timestampSpan = document.createElement("span");
+      timestampSpan.className = "timestamp";
+      if (newsArray[i].time) timestampSpan.textContent = newsArray[i].time;
+
       lineDiv.appendChild(textSpan);
       lineDiv.appendChild(cursor);
+      lineDiv.appendChild(timestampSpan);
       container.appendChild(lineDiv);
 
       await typeLine(textSpan, newsArray[i].text);
@@ -65,16 +90,20 @@ function startTypingLoop(container, newsArray) {
       if (lastCursor) lastCursor.remove();
       lastCursor = cursor;
 
-      await delay(1000);
+      await delay(1000); // short delay between signals
     }
 
-    await delay(CONFIG.pauseTime);
+    // AFTER all signals typed, keep static for 2 minutes
+    await delay(120000);
+
+    // Fetch new news and repeat
     render();
   }
 
   render();
 }
 
+// TYPE ONE LINE
 function typeLine(span, text) {
   return new Promise(resolve => {
     let i = 0;
@@ -89,6 +118,7 @@ function typeLine(span, text) {
   });
 }
 
+// SIMPLE DELAY
 function delay(ms) {
   return new Promise(res => setTimeout(res, ms));
 }
