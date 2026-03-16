@@ -1,172 +1,289 @@
-const container = document.getElementById("tiles");
-const sponsorColumn = document.getElementById("sponsor-column");
 
-async function createTiles() {
-  for (let i = 0; i < CONFIG.tileCount; i++) {
-    const tile = document.createElement("div");
-    tile.className = "tile";
+const container=document.getElementById("tiles")
+const trendingContainer=document.getElementById("trending-signals")
+const sponsorColumn=document.getElementById("sponsor-column")
+const densityFill=document.getElementById("density-fill")
+const signalCount=document.getElementById("signal-count")
 
-    // CATEGORY div for title
-    const category = document.createElement("div");
-    category.className = "category";
-    category.innerText = CONFIG.topics[i].name; // set immediately
+/* ---------------- TRENDING SIGNALS ---------------- */
 
-    const headline = document.createElement("div");
-    headline.className = "headline";
+function displayTrendingSignals(){
 
-    tile.appendChild(category);
-    tile.appendChild(headline);
-    container.appendChild(tile);
+CONFIG.trendingSignals.forEach(signal=>{
 
-    const topic = CONFIG.topics[i];
-    const newsArray = await fetchNews(
-      topic.query,
-      CONFIG.newsItemCount,
-      topic.fallback
-    );
+const div=document.createElement("div")
+div.className="trending-signal"
+div.textContent=signal
 
-    // Add timestamps for fallback news
-    const now = new Date();
-    newsArray.forEach((item, idx) => {
-      if (!item.time) {
-        item.time = `${(idx + 1) * 2}m`; // fake timestamp, 2m, 4m, etc.
-      }
-    });
+trendingContainer.appendChild(div)
 
-    startTypingLoop(headline, newsArray);
-  }
+})
 
-  createSponsorTiles(); // rotation starts after tiles appended
 }
 
-async function fetchNews(query, count, fallback) {
-  try {
-    const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=${count}&token=${CONFIG.apiKeys.gnews}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    if (data.articles && data.articles.length > 0) {
-      return data.articles.map(a => ({
-        text: a.title,
-        time: a.publishedAt ? formatTime(a.publishedAt) : null
-      }));
-    }
-  } catch (e) {
-    console.error("GNews error:", e);
-  }
-  // fallback news with default timestamps
-  return fallback.map((t, idx) => ({ text: t, time: `${(idx + 1) * 2}m` }));
+/* ---------------- RANDOM SIGNAL PROPERTIES ---------------- */
+
+function randomVelocity(){
+
+const r=Math.random()
+
+if(r>0.8) return "↑↑"
+if(r>0.6) return "↑"
+if(r>0.3) return "→"
+
+return "↓"
+
 }
 
-// Helper to format ISO date to "Xm"
-function formatTime(iso) {
-  const diff = Math.floor((Date.now() - new Date(iso)) / 60000);
-  return diff <= 0 ? "1m" : `${diff}m`;
+function randomImpact(){
+
+return Math.floor(Math.random()*100)+1
+
 }
 
-// TYPING LOOP
-function startTypingLoop(container, newsArray) {
-  async function render() {
-    container.innerHTML = ""; // clear previous headlines
-    let lastCursor = null;
+function randomStrength(){
 
-    for (let i = 0; i < newsArray.length; i++) {
-      const lineDiv = document.createElement("div");
-      const textSpan = document.createElement("span");
-      const cursor = document.createElement("span");
-      cursor.className = "cursor";
+return Math.floor(Math.random()*100)
 
-      // timestamp span
-      const timestampSpan = document.createElement("span");
-      timestampSpan.className = "timestamp";
-      if (newsArray[i].time) timestampSpan.textContent = newsArray[i].time;
-
-      lineDiv.appendChild(textSpan);
-      lineDiv.appendChild(cursor);
-      lineDiv.appendChild(timestampSpan);
-      container.appendChild(lineDiv);
-
-      await typeLine(textSpan, newsArray[i].text);
-
-      if (lastCursor) lastCursor.remove();
-      lastCursor = cursor;
-
-      await delay(1000); // short delay between signals
-    }
-
-    // AFTER all signals typed, keep static for 2 minutes
-    await delay(120000);
-
-    // Fetch new news and repeat
-    render();
-  }
-
-  render();
 }
 
-// TYPE ONE LINE
-function typeLine(span, text) {
-  return new Promise(resolve => {
-    let i = 0;
-    const interval = setInterval(() => {
-      span.textContent = text.slice(0, i + 1);
-      i++;
-      if (i >= text.length) {
-        clearInterval(interval);
-        resolve();
-      }
-    }, 80);
-  });
+/* ---------------- CREATE SIGNAL ---------------- */
+
+function createSignal(text,color){
+
+const line=document.createElement("div")
+line.className="news-line new"
+
+const velocity=document.createElement("div")
+velocity.className="velocity"
+velocity.textContent=randomVelocity()
+
+velocity.style.color=color
+
+/* SIGNAL STRENGTH BAR */
+
+const strengthBar=document.createElement("div")
+strengthBar.className="strength-bar"
+
+const fill=document.createElement("div")
+fill.className="strength-fill"
+
+const strength=randomStrength()
+
+fill.style.width=strength+"%"
+fill.style.background=color
+
+strengthBar.appendChild(fill)
+
+const title=document.createElement("span")
+title.className="news-text"
+title.textContent=text
+
+const impactScore=document.createElement("div")
+impactScore.className="impact-score"
+impactScore.textContent=randomImpact()
+/* match category color */
+impactScore.style.color=color
+
+const time=document.createElement("span")
+time.className="timestamp"
+time.dataset.time=Date.now()
+time.textContent="0m"
+
+line.appendChild(velocity)
+line.appendChild(strengthBar)
+line.appendChild(title)
+line.appendChild(impactScore)
+line.appendChild(time)
+
+return line
+
 }
 
-// SIMPLE DELAY
-function delay(ms) {
-  return new Promise(res => setTimeout(res, ms));
+/* ---------------- GNEWS FETCH ---------------- */
+
+async function fetchNews(query){
+
+try{
+
+const url=`https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=10&apikey=${CONFIG.apiKeys.gnews}`
+
+const res=await fetch(url)
+
+const data=await res.json()
+
+if(!data.articles) return null
+
+return data.articles.map(a=>a.title)
+
+}catch(e){
+
+console.log("GNews error",e)
+return null
+
 }
 
-// SPONSOR CREATION & ROTATION
-function createSponsorTiles() {
-  CONFIG.sponsors.forEach(item => {
-    const tile = document.createElement("div");
-    tile.className = "sponsor-tile";
-
-    const name = document.createElement("div");
-    name.className = "sponsor-name";
-    name.textContent = item.text;
-
-    const signals = document.createElement("div");
-    signals.className = "signal-box";
-
-    tile.appendChild(name);
-    tile.appendChild(signals);
-
-    const signalLines = item.signalLines || CONFIG.fallbackSignals;
-    signalLines.forEach(line => {
-      const div = document.createElement("div");
-      div.className = "signal-line";
-      div.textContent = "> " + line;
-      signals.appendChild(div);
-    });
-
-    tile.addEventListener("click", () => window.open(item.link, "_blank"));
-    sponsorColumn.appendChild(tile);
-  });
-
-  startSponsorRotation();
 }
 
-let sponsorIndex = 0;
-function startSponsorRotation() {
-  const tiles = document.querySelectorAll(".sponsor-tile");
-  if (!tiles.length) return;
+/* ---------------- START FEED ---------------- */
 
-  tiles.forEach(t => (t.style.display = "none"));
-  tiles[sponsorIndex].style.display = "block";
+function startFeed(feed,news,color){
 
-  setInterval(() => {
-    tiles[sponsorIndex].style.display = "none";
-    sponsorIndex = (sponsorIndex + 1) % tiles.length;
-    tiles[sponsorIndex].style.display = "block";
-  }, 4000);
+let index=0
+
+setInterval(()=>{
+
+const signal=createSignal(news[index],color)
+
+feed.prepend(signal)
+
+while(feed.children.length>CONFIG.maxVisibleSignals){
+feed.removeChild(feed.lastChild)
 }
 
-createTiles();
+index=(index+1)%news.length
+
+updateDensity()
+
+},CONFIG.newsShiftInterval)
+
+}
+
+/* ---------------- CREATE TILES ---------------- */
+
+async function createTiles(){
+
+displayTrendingSignals()
+
+for(const topic of CONFIG.topics){
+
+const tile=document.createElement("div")
+tile.className="tile"
+
+const category=document.createElement("div")
+category.className="category"
+category.textContent=topic.name
+category.style.color=topic.color
+
+const feed=document.createElement("div")
+feed.className="feed"
+
+tile.appendChild(category)
+tile.appendChild(feed)
+
+container.appendChild(tile)
+
+/* start with fallback */
+
+let news=[...topic.fallback]
+
+/* try loading live news */
+
+const liveNews=await fetchNews(topic.query)
+
+if(liveNews && liveNews.length>0){
+
+news=liveNews
+
+}
+
+startFeed(feed,news,topic.color)
+
+}
+
+createSponsors()
+
+}
+
+/* ---------------- TIMESTAMP AGING ---------------- */
+
+setInterval(()=>{
+
+document.querySelectorAll(".timestamp").forEach(t=>{
+
+const diff=Math.floor((Date.now()-t.dataset.time)/60000)
+
+t.textContent=diff+"m"
+
+const line=t.parentElement
+
+line.classList.remove("new","medium","old")
+
+if(diff<2) line.classList.add("new")
+else if(diff<5) line.classList.add("medium")
+else line.classList.add("old")
+
+})
+
+},60000)
+
+/* ---------------- SIGNAL DENSITY ---------------- */
+
+function updateDensity(){
+
+const total=document.querySelectorAll(".news-line").length
+
+signalCount.textContent=total+" signals"
+
+const percent=Math.min(100,total*5)
+
+densityFill.style.width=percent+"%"
+
+}
+
+/* ---------------- SPONSORS ---------------- */
+
+function createSponsors(){
+
+CONFIG.sponsors.forEach((s,i)=>{
+
+const tile=document.createElement("div")
+tile.className="sponsor-tile"
+
+if(i===0) tile.classList.add("active")
+
+const name=document.createElement("div")
+name.className="sponsor-name"
+name.textContent=s.text
+
+tile.appendChild(name)
+
+s.signalLines.forEach(line=>{
+
+const div=document.createElement("div")
+div.className="signal-line"
+div.textContent="> "+line
+
+tile.appendChild(div)
+
+})
+
+sponsorColumn.appendChild(tile)
+
+})
+
+startSponsorRotation()
+
+}
+
+let sponsorIndex=0
+
+function startSponsorRotation(){
+
+const tiles=document.querySelectorAll(".sponsor-tile")
+
+setInterval(()=>{
+
+tiles[sponsorIndex].classList.remove("active")
+
+sponsorIndex=(sponsorIndex+1)%tiles.length
+
+tiles[sponsorIndex].classList.add("active")
+
+},4000)
+
+}
+
+/* ---------------- INIT ---------------- */
+
+createTiles()
