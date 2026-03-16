@@ -1,15 +1,19 @@
 const CONFIG = {
+
   tileCount: 3,
   newsItemCount: 10,
   pauseTime: 3000,
+  newsShiftInterval: 5000, // shift news tiles every 5s
+
   apiKeys: {
-    gnews: "3c9a21f9c87084fe483e8d988b106b4a"  // replace with your GNews key
+    gnews: "3c9a21f9c87xxxadasdasdasd88b106b4a"
   },
 
   topics: [
+
     {
       name: "Space",
-      query: "spacex OR nasa OR planets OR space exploration",
+      query: "ISRO OR spacex OR nasa OR planets OR space exploration",
       fallback: [
         "Mars rover discovers new rock formation",
         "SpaceX launches Starship test flight",
@@ -23,9 +27,10 @@ const CONFIG = {
         "Commercial space tourism expands"
       ]
     },
+
     {
       name: "Artificial Intelligence",
-      query: "ai OR artificial intelligence OR machine learning",
+      query: "artificial intelligence OR machine learning",
       fallback: [
         "AI beats humans in coding challenge",
         "New language model released for developers",
@@ -39,6 +44,7 @@ const CONFIG = {
         "AI-powered music composition software launched"
       ]
     },
+
     {
       name: "Biotech",
       query: "biotech OR gene editing OR medical",
@@ -55,14 +61,62 @@ const CONFIG = {
         "Biotech innovation awards announced"
       ]
     }
+
   ],
 
   sponsors: [
-    { text: "SpaceX", link: "https://spacex.com" },
-    { text: "OpenAI", link: "https://openai.com" },
-    { text: "Tesla", link: "https://tesla.com" },
-    { text: "Nvidia", link: "https://nvidia.com" },
-    { text: "Biogen", link: "https://biogen.com" },
-     { text: "Tamannah Jewellery", link: "https://www.tamannaah.com/" }
+
+    {
+      text: "Tesla",
+      link: "https://tesla.com",
+      signalLines: [
+        "Autonomous driving evolving",
+        "Cybertruck production scaling",
+        "Energy storage expansion"
+      ]
+    },
+
+    {
+      text: "Nvidia",
+      link: "https://nvidia.com",
+      signalLines: [
+        "AI chips powering next-gen models",
+        "Blackwell GPU demand surging",
+        "Data centers scaling globally"
+      ]
+    },
+
+    {
+      text: "OpenAI",
+      link: "https://openai.com",
+      signalLines: [
+        "Agents ecosystem expanding",
+        "Multimodal models evolving",
+        "Reasoning models improving"
+      ]
+    },
+
+    {
+      text: "SpaceX",
+      link: "https://spacex.com",
+      signalLines: [
+        "Starship orbital launch planned",
+        "Global satellite coverage expanding",
+        "Mars mission roadmap evolving"
+      ]
+    },
+
+    {
+      text: "Biogen",
+      link: "https://biogen.com"
+    }
+
+  ],
+
+  fallbackSignals: [
+    "Autonomous systems evolving",
+    "Global AI infrastructure scaling",
+    "Next generation robotics emerging"
   ]
+
 };
