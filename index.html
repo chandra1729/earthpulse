@@ -1,110 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>EarthPulse</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
 <h1>Globe Signals</h1>
-
 <div class="live-indicator">
-<span id="live-dot"></span> LIVE
+  <span id="live-dot"></span> LIVE
 </div>
 
 <div class="main-container">
 
-<!-- TRENDING -->
+  <!-- TRENDING -->
+  <div class="trending-section">
+    <div class="trending-title">TRENDING SIGNALS</div>
+    <div id="trending-signals"></div>
+  </div>
 
-<div class="trending-section">
+  <!-- SIGNAL TILES -->
+  <div id="tiles" class="tiles"></div>
 
-<div class="trending-title">
-TRENDING SIGNALS
-</div>
-
-<div id="trending-signals"></div>
-
-</div>
-
-<!-- SIGNAL TILES -->
-
-<div id="tiles" class="tiles"></div>
-
-<!-- SPONSOR -->
-
-<div class="sponsor-section">
-
-<div class="sponsor-title">
-SPONSOR SIGNAL
-</div>
-
-<div id="sponsor-column"></div>
+  <!-- SPONSOR -->
+  <div class="sponsor-section">
+    <div class="sponsor-title">SPONSOR SIGNAL</div>
+    <div id="sponsor-column"></div>
+  </div>
 
 </div>
-
-</div>
-
 
 <!-- LEGEND -->
-
 <div class="legend-panel">
-
-<div class="legend-item">
-<b>Velocity</b>:
-<span class="v-up2">↑↑</span> Rapid
-<span class="v-up">↑</span> Rising
-<span class="v-flat">→</span> Stable
-<span class="v-down">↓</span> Falling
+  <div class="legend-item">
+    <b>Velocity</b>:
+    <span class="v-up2">↑↑</span> Rapid
+    <span class="v-up">↑</span> Rising
+    <span class="v-flat">→</span> Stable
+    <span class="v-down">↓</span> Falling
+  </div>
+  <div class="legend-item">
+    <b>Strength</b>:
+    <span class="bars">█</span>
+    <span class="bars">██</span>
+    <span class="bars">███</span>
+    <span class="bars">████</span>
+  </div>
+  <div class="legend-item">
+    <b>Impact</b>:
+    0-30 Low
+    30-70 Medium
+    70-100 Major
+  </div>
 </div>
-
-<div class="legend-item">
-<b>Strength</b>:
-<span class="bars">█</span>
-<span class="bars">██</span>
-<span class="bars">███</span>
-<span class="bars">████</span>
-</div>
-
-<div class="legend-item">
-<b>Impact</b>:
-0-30 Low
-30-70 Medium
-70-100 Major
-</div>
-
-</div>
-
 
 <!-- STATUS BAR -->
-
 <div class="density-footer">
-
-<div class="density-label">
-GLOBAL SIGNAL FLOW
+  <div class="density-label">GLOBAL SIGNAL FLOW</div>
+  <div id="signal-count">0 signals</div>
+  <div id="density-bar">
+    <div id="density-fill"></div>
+  </div>
 </div>
-
-<div id="signal-count">
-0 signals
-</div>
-
-<div id="density-bar">
-<div id="density-fill"></div>
-</div>
-
-</div>
-
 
 <script src="config.js"></script>
 <script src="app.js"></script>
-
 </body>
-
 </html>
