@@ -1,69 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EarthPulse</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EARTHPULSE | SIGINT TERMINAL v0.4</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Globe Signals</h1>
-<div class="live-indicator">
-  <span id="live-dot"></span> LIVE
-</div>
+<header>
+  <div class="header-left">
+    <h1>NEWS - WHAT IT MEANS</h1>
+    <div class="live-indicator">
+      <span id="live-dot"></span> 
+      <span style="font-family:monospace; font-size:10px; color:#444;">NODE: GLOBAL_v4.5</span> | 
+      <span id="last-updated" style="color:#666; font-family:monospace; font-size:10px">SCANNING...</span>
+    </div>
+  </div>
+</header>
 
-<div class="main-container">
-
-  <!-- TRENDING -->
-  <div class="trending-section">
-    <div class="trending-title">TRENDING SIGNALS</div>
+<main class="main-container">
+  <aside class="trending-section">
+    <div style="color:#222; margin-bottom:12px; font-size:9px; font-family:monospace; font-weight:bold; letter-spacing:1px;">LOCAL_TRENDS</div>
     <div id="trending-signals"></div>
-  </div>
+  </aside>
 
-  <!-- SIGNAL TILES -->
-  <div id="tiles" class="tiles"></div>
+  <section class="tiles" id="tiles"></section>
 
-  <!-- SPONSOR -->
-  <div class="sponsor-section">
-    <div class="sponsor-title">SPONSOR SIGNAL</div>
+  <aside class="sponsor-section">
+    <div style="color:#222; margin-bottom:12px; font-size:9px; font-family:monospace; font-weight:bold; letter-spacing:1px;">PARTNERS</div>
     <div id="sponsor-column"></div>
-  </div>
+  </aside>
+</main>
 
-</div>
-
-<!-- LEGEND -->
 <div class="legend-panel">
-  <div class="legend-item">
-    <b>Velocity</b>:
-    <span class="v-up2">↑↑</span> Rapid
-    <span class="v-up">↑</span> Rising
-    <span class="v-flat">→</span> Stable
-    <span class="v-down">↓</span> Falling
-  </div>
-  <div class="legend-item">
-    <b>Strength</b>:
-    <span class="bars">█</span>
-    <span class="bars">██</span>
-    <span class="bars">███</span>
-    <span class="bars">████</span>
-  </div>
-  <div class="legend-item">
-    <b>Impact</b>:
-    0-30 Low
-    30-70 Medium
-    70-100 Major
-  </div>
+  <div class="legend-item">SIG_INT: ACTIVE</div>
+  <div class="legend-item">DECRYPT: AUTO</div>
+  <div class="legend-item">SYNC: 45M</div>
 </div>
 
-<!-- STATUS BAR -->
-<div class="density-footer">
-  <div class="density-label">GLOBAL SIGNAL FLOW</div>
-  <div id="signal-count">0 signals</div>
-  <div id="density-bar">
-    <div id="density-fill"></div>
-  </div>
-</div>
+<footer class="density-footer">
+  <span id="signal-count" style="font-size:9px; font-family:monospace; color:#222">0 SIGNALS</span>
+  <div id="density-bar"><div id="density-fill"></div></div>
+</footer>
 
 <script src="config.js"></script>
 <script src="app.js"></script>
