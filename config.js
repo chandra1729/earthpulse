@@ -1,94 +1,33 @@
 const CONFIG = {
-
-  maxVisibleSignals:10,
-  newsShiftInterval:5000,
-
-  /* GNEWS API */
-  apiKeys:{
-    gnews:"3c9a21f9c87084fxxx3e8d9xx88b106b4a"
+  maxVisibleSignals: 7, // Increased since tiles are smaller
+  newsShiftInterval: 8000, 
+  apiRefreshRate: 2700000, 
+  apiKeys: {
+    gnews: "3c9a21f9c87084fxxx88b106b4a" 
   },
-
-  /* TOPICS */
-  topics:[
+  topics: [
     {
-      name:"Space",
-      color:"#4fc3f7",
-      query:"ISRO OR spacex OR nasa OR planets OR space exploration",
-      fallback:[
-        "Starship orbital launch preparation",
-        "NASA telescope captures deep space images",
-        "Private space station projects expanding",
-        "Mars rover geological discovery",
-        "ISRO lunar mission update"
-      ]
+      name: "Crude Oil",
+      color: "#ff7043",
+      query: "crude oil OR oil prices OR OPEC OR Brent oil",
+      fallback: ["OPEC production update", "Oil prices fluctuate", "Brent crude volatility"]
     },
     {
-      name:"Artificial Intelligence",
-      color:"#ffff00ff",
-      query:"artificial intelligence OR machine learning OR AI models OR generative AI",
-      fallback:[
-        "OpenAI expands autonomous agents",
-        "Nvidia launches next AI GPU",
-        "AI copilots transforming coding",
-        "Multimodal AI models evolving",
-        "AI robotics entering factories"
-      ]
+      name: "Artificial Intelligence",
+      color: "#ffff00",
+      query: "artificial intelligence OR Nvidia OR OpenAI",
+      fallback: ["OpenAI expands agents", "Nvidia GPU demand", "AI chip surge"]
     },
     {
-      name:"Biotech",
-      color:"#ba68c8",
-      query:"biotech OR gene editing OR medical research OR CRISPR",
-      fallback:[
-        "CRISPR therapy trial success",
-        "Synthetic organ development progresses",
-        "AI driven drug discovery",
-        "Cancer immunotherapy breakthrough",
-        "Gene therapy trials expand"
-      ]
+      name: "Space",
+      color: "#4fc3f7",
+      query: "SpaceX OR NASA OR Starship",
+      fallback: ["Starship launch prep", "NASA deep space news", "Mars rover update"]
     }
   ],
-
-  /* TRENDING SIGNALS */
-  trendingSignals:[
-    "_nvidia.AI.surge",
-    "_openai.AGENTS.ecosystem",
-    "_china.AI.regulation",
-    "_spacex.starship.test",
-    "_apple.AI.chips"
-  ],
-
-  /* SPONSORS */
-  sponsors:[
-    {
-      text:"Tesla",
-      signalLines:[
-        "Autonomous driving expanding",
-        "Cybertruck production scaling",
-        "Energy storage growth"
-      ]
-    },
-    {
-      text:"Nvidia",
-      signalLines:[
-        "AI chip demand surging",
-        "Blackwell GPU adoption",
-        "Data center expansion"
-      ]
-    },
-    {
-      text:"OpenAI",
-      signalLines:[
-        "Agents ecosystem growing",
-        "Reasoning models improving",
-        "Multimodal systems evolving"
-      ]
-    }
-  ],
-
-  /* FALLBACK GLOBAL SIGNALS */
-  fallbackSignals:[
-    "Autonomous systems evolving",
-    "Global AI infrastructure scaling",
-    "Next generation robotics emerging"
+  trendingSignals: ["_nvidia.AI", "_openai.AGENTS", "_spacex.starship", "_system.v4.5"],
+  sponsors: [
+    { text: "Tesla", lines: ["FSD v12 Release", "Energy Storage Up"] },
+    { text: "Nvidia", lines: ["H100 Demand Peak", "CUDA 13 Update"] }
   ]
 };
