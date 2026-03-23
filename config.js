@@ -3,14 +3,14 @@ const CONFIG = {
   newsShiftInterval: 4000,
   topics: [
     {
-      name: "Crude Oil",
+      name: "Global News",
       color: "#ff7043",
       fallback: [
-        "Oil prices fluctuate amid supply concerns",
-        "OPEC production decisions impact markets",
-        "Brent crude volatility continues",
+        "India Outlines strategy for supply protection",
+        "Transparency is needed regarding the costs of the Trump–Iran war",
+        "Australia faces an economic crisis due to a potential Strait shutdown",
         "Energy sector reacts to tensions",
-        "Global demand outlook shifts"
+        "Indian industry remains resilient amid the ongoing conflict."
       ]
     },
     {
