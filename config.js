@@ -1,6 +1,6 @@
 const CONFIG = {
   maxVisibleSignals: 5,
-  newsShiftInterval: 8000,
+  newsShiftInterval: 12000,
   topics: [
     {
       name: "Global News",
