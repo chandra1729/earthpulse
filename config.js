@@ -1,31 +1,42 @@
 const CONFIG = {
-  maxVisibleSignals: 7, // Increased since tiles are smaller
-  newsShiftInterval: 8000, 
-  apiRefreshRate: 2700000, 
-  apiKeys: {
-    gnews: "3c9a21f9c87084fxxx88b106b4a" 
-  },
+  maxVisibleSignals: 5,
+  newsShiftInterval: 4000,
   topics: [
     {
       name: "Crude Oil",
       color: "#ff7043",
-      query: "crude oil OR oil prices OR OPEC OR Brent oil",
-      fallback: ["OPEC production update", "Oil prices fluctuate", "Brent crude volatility"]
+      fallback: [
+        "Oil prices fluctuate amid supply concerns",
+        "OPEC production decisions impact markets",
+        "Brent crude volatility continues",
+        "Energy sector reacts to tensions",
+        "Global demand outlook shifts"
+      ]
     },
     {
       name: "Artificial Intelligence",
       color: "#ffff00",
-      query: "artificial intelligence OR Nvidia OR OpenAI",
-      fallback: ["OpenAI expands agents", "Nvidia GPU demand", "AI chip surge"]
+      fallback: [
+        "OpenAI expands autonomous agents",
+        "Nvidia launches next AI GPU",
+        "AI copilots transforming coding",
+        "Multimodal AI models evolving",
+        "AI robotics entering factories"
+      ]
     },
     {
       name: "Space",
       color: "#4fc3f7",
-      query: "SpaceX OR NASA OR Starship",
-      fallback: ["Starship launch prep", "NASA deep space news", "Mars rover update"]
+      fallback: [
+        "Starship orbital launch preparation",
+        "NASA captures deep space images",
+        "Private space station projects",
+        "Mars rover geological discovery",
+        "ISRO lunar mission update"
+      ]
     }
   ],
-  trendingSignals: ["_nvidia.AI", "_openai.AGENTS", "_spacex.starship", "_system.v4.5"],
+  trendingSignals: ["_nvidia.AI.surge", "_openai.AGENTS", "_spacex.starship", "_apple.AI.chips"],
   sponsors: [
     { text: "Tesla", lines: ["FSD v12 Release", "Energy Storage Up"] },
     { text: "Nvidia", lines: ["H100 Demand Peak", "CUDA 13 Update"] }
