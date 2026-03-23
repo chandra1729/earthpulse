@@ -77,14 +77,14 @@ h1 { font-size: 20px; margin: 0; letter-spacing: 3px; font-family: var(--font-mo
 
 .signal-card:hover { background: rgba(255,255,255,0.07); transform: translateX(5px); border-color: rgba(255,255,255,0.5); }
 
-.news-text { font-size: 15px; font-weight: bold; display: block; margin-bottom: 8px; text-align: left; }
+.news-text { font-size: 18px; font-weight: bold; display: block; margin-bottom: 8px; text-align: left; }
 
 .card-meta { 
   display: flex; justify-content: space-between; font-family: var(--font-mono);
-  font-size: 10px; color: #888; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px; color: #888; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.meaning-panel { font-size: 11px; text-align: left; }
+.meaning-panel { font-size: 14px; text-align: left; }
 .meaning-row { display: flex; gap: 10px; margin-bottom: 3px; }
 .label { width: 45px; color: #666; font-weight: bold; }
 
